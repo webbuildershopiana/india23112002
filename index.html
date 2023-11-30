@@ -71,7 +71,7 @@
 
 <style type="text/css">
 
-* { box-sizing: border-box; } body {margin: 0;}.swiper-slide{height:80vh !important;}
+* { box-sizing: border-box; } body {margin: 0;}.swiper-slide{height:80vh !important;}.swiper{height:80vh;}
 
 </style>
 
@@ -92,19 +92,19 @@
       <img src="https://images.unsplash.com/photo-1621619856624-42fd193a0661?q=80&amp;w=2058&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="swiper-image" id="i62x9" class="swiper-image w-100 h-100">
      </div>
     </div>
-    <div class="swiper-button-next" id="i04d8"></div>
-    <div class="swiper-button-prev" id="ikdfp"></div>
+    <div id="i04d8" class="swiper-button-next"></div>
+    <div id="ikdfp" class="swiper-button-prev"></div>
     <div class="swiper-pagination"></div>
     <div class="swiper-scrollbar"></div>
    </div>
   </div>
-  <script>var props = {"i3mf7":{"autoplay":false,"loop":false,"scrollbar":{"enabled":false}}};
+  <script>var props = {"i3mf7":{"autoplay":false,"loop":false,"scrollbar":{"enabled":false},"navigation":{"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"},"direction":"vertical"}};
           var ids = Object.keys(props).map(function(id) { return '#'+id }).join(',');
           var els = document.querySelectorAll(ids);
           for (var i = 0, len = els.length; i < len; i++) {
             var el = els[i];
-            (function script({ autoplay, loop, scrollbar }) {
-        console.log(autoplay, loop, scrollbar);
+            (function script({ autoplay, loop, scrollbar, navigation, direction }) {
+        console.log(autoplay, loop, scrollbar, navigation, direction);
         // Check if Swiper CSS is already added
         if (!document.querySelector('link[href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"]')) {
             // Dynamically add Swiper CSS to the head element
@@ -115,7 +115,6 @@
         }
         // Check if Swiper JS is already added
         if (!document.querySelector('script[src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"]')) {
-            console.log('Adding script if not already exist');
             // Dynamically add Swiper JS to the head element
             const swiperJsScript = document.createElement('script');
             swiperJsScript.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
@@ -128,19 +127,9 @@
                     spaceBetween: 30,
                     loop,
                     autoplay,
-                    // autoplay: {
-                    //   delay: 2500,
-                    //   disableOnInteraction: false,
-                    // },
-                    // pagination: {
-                    //   el: ".swiper-pagination",
-                    //   clickable: true,
-                    // },
                     scrollbar,
-                    navigation: {
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev",
-                    },
+                    navigation,
+                    direction,
                     observer: true,
                 });
                 // Update swiper on any change
@@ -152,26 +141,15 @@
             };
         }
         else {
-            console.log('Not adding script because already exist');
             // Swiper JS is already added, directly initialize Swiper
             //@ts-ignore
             const swiper = new Swiper(".mySwiper", {
                 spaceBetween: 30,
                 loop,
                 autoplay,
-                // autoplay: {
-                //   delay: 2500,
-                //   disableOnInteraction: false,
-                // },
-                // pagination: {
-                //   el: ".swiper-pagination",
-                //   clickable: true,
-                // },
                 scrollbar,
-                navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
-                },
+                navigation,
+                direction,
                 observer: true,
             });
             // Update swiper on any change
